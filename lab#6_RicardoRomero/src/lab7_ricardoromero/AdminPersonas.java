@@ -76,7 +76,7 @@ public class AdminPersonas {
             try {
                 sc = new Scanner(archivo);
                 sc.useDelimiter(";");
-                while (sc.hasNext()) {
+                while (sc.hasNext(";")) {
                     lista.add(new personas(sc.next(), sc.next(), sc.next(), sc.next(), sc.next(), sc.nextInt(), sc.next()));
                 }
             } catch (Exception e) {

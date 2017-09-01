@@ -5,6 +5,7 @@
  */
 package lab7_ricardoromero;
 
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -55,10 +56,10 @@ public class lab6_frame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tf_correo2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        pf_contra = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jd_mensajeria = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
@@ -234,6 +235,11 @@ public class lab6_frame extends javax.swing.JFrame {
         jLabel8.setText("Contraseña");
 
         jButton1.setText("INGRESAR");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -254,8 +260,8 @@ public class lab6_frame extends javax.swing.JFrame {
                                     .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))))
+                                    .addComponent(tf_correo2)
+                                    .addComponent(pf_contra, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)))
                 .addContainerGap(143, Short.MAX_VALUE))
@@ -268,12 +274,12 @@ public class lab6_frame extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_correo2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(52, 52, 52)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pf_contra, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
@@ -483,7 +489,7 @@ public class lab6_frame extends javax.swing.JFrame {
 
             if (tf_contra.getText().equals(tf_verificar.getText())) {
                 JOptionPane.showMessageDialog(mi_registrarse, "Concuerdan las contraseñas");
-
+                lista.add(new personas(nombre, apellido, correo, contra, pais, numero_telefono, contra));
                 AdminPersonas ap = new AdminPersonas("./Personas.txt");
                 ap.cargararchivo();
                 ap.getLista().add(new personas(nombre, apellido, correo, contra, pais, numero_telefono, contra));
@@ -507,6 +513,25 @@ public class lab6_frame extends javax.swing.JFrame {
     private void mi_buzonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_buzonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mi_buzonActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        for (personas r : lista) {
+            System.out.println(r.getCorreo());
+            if (r.getCorreo().equals(tf_correo2.getText())) {
+                if (r.getContra().equals(pf_contra.getText())) {
+                    jd_login.dispose();
+                    jd_mensajeria.setModal(true);
+                    jd_mensajeria.pack();
+                    jd_mensajeria.setLocationRelativeTo(this);
+                    jd_mensajeria.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario Incorrecto");
+            }
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -575,20 +600,21 @@ public class lab6_frame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JDialog jd_login;
     private javax.swing.JDialog jd_mensajeria;
     private javax.swing.JDialog jd_registrarse;
     private javax.swing.JMenuItem mi_buzon;
     private javax.swing.JMenuItem mi_login;
     private javax.swing.JMenuItem mi_registrarse;
+    private javax.swing.JPasswordField pf_contra;
     private javax.swing.JTextField tf_apellido;
     private javax.swing.JTextField tf_contra;
     private javax.swing.JTextField tf_correo;
+    private javax.swing.JTextField tf_correo2;
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JTextField tf_numero;
     private javax.swing.JTextField tf_pais;
     private javax.swing.JTextField tf_verificar;
     // End of variables declaration//GEN-END:variables
+ArrayList<personas> lista = new ArrayList();
 }
