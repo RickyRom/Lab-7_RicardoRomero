@@ -20,6 +20,9 @@ public class AdminPersonas {
     private ArrayList<personas> lista = new ArrayList();
     protected File archivo = null;
 
+    public AdminPersonas() {
+    }
+    
     public AdminPersonas(String path) {
         archivo = new File(path);
     }

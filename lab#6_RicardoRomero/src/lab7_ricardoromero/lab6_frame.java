@@ -20,6 +20,7 @@ public class lab6_frame extends javax.swing.JFrame {
      */
     public lab6_frame() {
         initComponents();
+        
     }
 
     /**
