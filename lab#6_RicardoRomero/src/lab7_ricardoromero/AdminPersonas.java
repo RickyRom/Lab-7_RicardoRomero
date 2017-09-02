@@ -18,7 +18,7 @@ import java.util.Scanner;
  */
 public class AdminPersonas {
     private ArrayList<personas> lista = new ArrayList();
-    private File archivo = null;
+    protected File archivo = null;
 
     public AdminPersonas(String path) {
         archivo = new File(path);
